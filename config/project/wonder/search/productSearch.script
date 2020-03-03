@@ -1,0 +1,170 @@
+{{!
+    這裡可以放註解  
+}}
+{
+        {{#_source}}  
+        "_source": {{#toJson}}_source{{/toJson}},
+        {{/_source}}
+        {{^search_after}}
+        "from": "{{from}}{{^from}}0{{/from}}",
+        {{/search_after}}
+        "size": "{{size}}{{^size}}10{{/size}}",
+        "query": {
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "must": [ 
+                            {
+                            {{#query}}
+                                "multi_match": {
+                                    "query": "{{query}}",
+                                    "type": "cross_fields",
+                                    "fields": [
+                                        "categoryPath^4",
+                                        "productItemName^10",
+                                        "brandName^4",
+                                        "modelNo",
+                                        "productNo"
+                                    ],
+                                    "operator": "and",
+                                    "minimum_should_match": "20%"
+                                }
+                             {{/query}}
+                            }
+                            {{#category}}
+                            ,{
+                                "nested": {
+                                    "path": "categories",
+                                    "query": {
+                                        "bool": {
+                                            "must": [
+                                                {}                    
+                                                {{#category1}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv1": "{{category1}}"}
+                                                }
+                                                {{/category1}}
+                                                {{#category2}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv2": "{{category2}}"}
+                                                }
+                                                {{/category2}}
+                                                {{#category3}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv3": "{{category3}}"}
+                                                }
+                                                {{/category3}}
+                                                {{#category4}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv4": "{{category4}}"}
+                                                }
+                                                {{/category4}}
+                                                {{#category5}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv5": "{{category5}}"}
+                                                }
+                                                {{/category5}}
+                                             ]                                        }
+                                    }
+                                }
+                            }
+                            {{/category}}
+                        ]
+                        {{#filter}}
+                        ,
+                        "filter": [
+                            {
+                            }
+                            {{#salePrice}}
+                            ,
+                            {
+                                "range": {
+                                    "salePrice": {
+                                        {{#start}}
+                                        "gte": "{{start}}"
+                                        {{#end}},{{/end}}
+                                        {{/start}}
+                                        {{#end}}
+                                        "lte": "{{end}}"
+                                        {{/end}}
+                                    }
+                                }
+                            }
+                            {{/salePrice}}
+                            {{#shippingMethod}}
+                            ,
+                            {
+                                "term": {
+                                    "shippingMethod": "{{shippingMethod}}"
+                                }
+                            }
+                            {{/shippingMethod}}
+                           {{#temperatureControlledType}}
+                            ,
+                            {
+                                "term": {
+                                    "temperatureControlledType": "{{temperatureControlledType}}"
+                                }
+                            }
+                            {{/temperatureControlledType}}
+                            {{#saleType}}
+                            ,
+                            {
+                                "term": {
+                                    "saleType": "{{saleType}}"
+                                }
+                            }
+                            {{/saleType}}
+                            {{#storeNo}}
+                            ,
+                            {
+                                "term": {
+                                    "storeNo": "{{storeNo}}"
+                                }
+                            }
+                            {{/storeNo}}
+                            {{#supplierNo}}
+                            ,
+                            {
+                                "term": {
+                                    "supplierNo": "{{supplierNo}}"
+                                }
+                            }
+                            {{/supplierNo}}
+                            {{#productNo}}
+                            ,
+                            {
+                                "terms": {
+                                    "productNo": {{#toJson}}productNo{{/toJson}}
+                                }
+                            }
+                            {{/productNo}}
+                        ]
+                        {{/filter}}
+                    }
+                }
+            }
+        }
+        {{#sort}}
+        ,
+        "sort": [
+            {{#by}}
+            {"{{by}}": "{{order}}{{^order}}desc{{/order}}"},
+            {{/by}}
+            {"_score": "desc"}
+        ]
+        {{#search_after}}
+        ,
+        "search_after": {{#toJson}}search_after{{/toJson}}
+        {{/search_after}}
+        {{/sort}}
+        {{#extra}}
+        ,
+        "{{name}}": {{#toJson}}value{{/toJson}}
+        {{/extra}}
+}

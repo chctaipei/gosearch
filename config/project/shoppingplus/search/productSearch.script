@@ -1,0 +1,197 @@
+{{!
+    這裡可以放註解
+}}
+{
+        {{#_source}}
+        "_source": {{#toJson}}_source{{/toJson}},
+        {{/_source}}
+        {{^search_after}}
+        {{#from}}
+        "from": "{{from}}{{^from}}0{{/from}}",
+        {{/from}}
+        {{/search_after}}
+        "size": "{{size}}{{^size}}10{{/size}}",
+        "query": {
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "multi_match": {
+                                    "query": "{{query}}",
+                                    "type": "cross_fields",
+                                    "fields": [
+                                        "categoryPath^4",
+                                        "productItemName^10",
+                                        "brandAlias^4",
+                                        "tags",
+                                        "modelNo",
+                                        "productNo",
+                                        "keyword"
+                                    ],
+                                    "operator": "and",
+                                    "minimum_should_match": "20%"
+                                }
+                            }
+                            {{#category}}
+                            ,{
+                                "nested": {
+                                    "path": "categories",
+                                    "query": {
+                                        "bool": {
+                                            "must": [
+                                                {}
+                                                {{#category0}}
+                                                ,
+                                                {
+                                                    "term": {"categories.lv0": "{{category0}}"}
+                                                }
+                                                {{/category0}}
+                                                {{#category1}}
+                                                ,
+                                                {
+                                                   "term": {"categories.lv1": "{{category1}}"}
+                                                }
+                                                {{/category1}}
+                                                {{#category2}}
+                                                ,
+                                               {
+                                                   "term": {"categories.lv2": "{{category2}}"}
+                                               }
+{{/category2}}
+                                                {{#category3}}
+                                                ,
+                                               {
+                                                   "term": {"categories.lv3": "{{category3}}"}
+                                               }
+                                                {{/category3}}
+
+                                             ]
+                                        }
+                                    }
+                                }
+                            }
+                            {{/category}}
+                        ]
+                        {{#filter}}
+                        ,
+                        "filter": [
+                            {
+                            }
+                            {{#shippingWays}}
+                            ,
+                            {
+                                "term": {
+                                    "shippingWays": "{{shippingWays}}"
+                                }
+                            }
+                            {{/shippingWays}}
+                            {{#salePrice}}
+                            ,
+                            {
+                                "range": {
+                                    "salePrice": {
+                                        {{#start}}
+                                        "gte": "{{start}}"
+                                        {{#end}},{{/end}}
+                                        {{/start}}
+                                        {{#end}}
+                                        "lte": "{{end}}"
+                                        {{/end}}
+                                    }
+                                }
+                            }
+                            {{/salePrice}}
+                        ]
+                        {{/filter}}
+                    }
+                },
+                "functions": [
+                    {
+                        "field_value_factor": {
+                            "field": "saleTimes",
+                            "modifier": "log2p",
+                            "factor": "3"
+                        }
+                    },
+                    {
+                        "field_value_factor": {
+                            "field": "watchTimes",
+                            "modifier": "log2p",
+                            "factor": "2"
+                        }
+                    }
+                ],
+                "boost_mode": "multiply",
+                "max_boost": 100
+            }
+        }
+        {{#aggs}}
+        ,
+        "aggs": {
+            "brand": {
+                "terms": {
+                    "field": "brandAlias.raw",
+                    "size": 50
+                }
+            },
+            "related": {
+                "terms": {
+                    "field": "tags.raw",
+                    "size": 50
+                }
+            },
+            "prices" : {
+                "histogram" : {
+                    "field" : "salePrice",
+                    "interval" : 500,
+                    "min_doc_count" : 1,
+                    "keyed" : true
+                }
+            },
+            "level0": {
+                "terms": {
+                    "field": "productCategoryLv0"
+                },
+                "aggs": {
+                    "level1": {
+                        "terms": {
+                            "field": "productCategoryLv1"
+                        },
+                        "aggs": {
+                            "level2": {
+                                "terms": {
+                                    "field": "productCategoryLv2"
+                                },
+                                "aggs": {
+                                    "level3": {
+                                        "terms": {
+                                            "field": "productCategoryLv3"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        {{/aggs}}
+        {{#sort}}
+        ,
+        "sort": [
+            {{#by}}
+            {"{{by}}": "{{order}}{{^order}}desc{{/order}}"},
+            {{/by}}
+            {"_score": "desc"}
+        ]
+        {{#search_after}}
+        ,
+        "search_after": {{#toJson}}search_after{{/toJson}}
+        {{/search_after}}
+        {{/sort}}
+        {{#extra}}
+        ,
+        "{{name}}": {{#toJson}}value{{/toJson}}
+        {{/extra}}
+}

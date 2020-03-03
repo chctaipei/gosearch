@@ -1,0 +1,14 @@
+{
+    "project": {
+        "properties": {
+            "name": {
+                "type": "string",
+                "index":"not_analyzed"
+            },
+            "data": {
+                "type": "string",
+                "index":"no"
+            }
+        }
+    }
+}

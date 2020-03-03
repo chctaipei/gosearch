@@ -1,0 +1,9 @@
+CREATE DATABASE  IF NOT EXISTS gosearch DEFAULT CHARSET=utf8;
+use gosearch;
+CREATE TABLE IF NOT EXISTS `config` (
+  `name` varbinary(11) NOT NULL DEFAULT '',
+  `data` JSON,
+  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updateTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

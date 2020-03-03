@@ -1,0 +1,36 @@
+{
+    "title": "關鍵字模糊搜尋",
+    "type": "object",
+    "required": [
+        "query"
+    ],
+    "properties": {
+        "from": {
+            "title": "從第幾筆開始",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        },
+        "size": {
+            "title": "數量",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50,
+            "default": 10
+        },
+        "query": {
+            "type": "string",
+            "title": "關鍵字"
+        },
+        "min_score": {
+            "title": "最低符合分數",
+            "type": "integer",
+            "default": 0.5
+        },
+        "fuzziness": {
+            "title": "fuzziness",
+            "type": "integer",
+            "default": 3
+        }
+    }
+}

@@ -1,0 +1,173 @@
+{{!
+    這裡可以放註解
+}}
+{
+        {{#_source}}
+        "_source": {{#toJson}}_source{{/toJson}},
+        {{/_source}}
+        {{^search_after}}
+        {{#from}}
+        "from": "{{from}}{{^from}}0{{/from}}",
+        {{/from}}
+        {{/search_after}}
+        "size": "{{size}}{{^size}}10{{/size}}",
+        "query": {
+            "function_score": {
+                "query": {
+                    "bool": {
+                        "must": [
+                            {
+                                "multi_match": {
+                                    "query": "{{query}}",
+                                    "type": "cross_fields",
+                                    "fields": [
+                                        "FULL_CATEGORY_PATH^15",
+                                        "PRODUCT_NAME^100",
+                                        "BRAND^4",
+                                        "AUTHOR",
+                                        "PUBLISHER",
+                                        "ISBN",
+                                        "keywords^20"
+                                    ],
+                                    "operator": "and",
+                                    "minimum_should_match": "20%"
+                                }
+                            }
+                        ]
+                        {{#filter}}
+                        ,
+                        "filter": [
+                            {
+                            }
+                            {{#ship_type}}
+                            ,
+                            {
+                                "term": {
+                                    "SHIP_TYPE": "{{ship_type}}"
+                                }
+                            }
+                            {{/ship_type}}
+                            {{#category_id}}
+                            ,
+                            {
+                                "term": {
+                                    "CATEGORY_ID": "{{category_id}}"
+                                }
+                            }
+                            {{/category_id}}
+                            {{#now_price}}
+                            ,
+                            {
+                                "range": {
+                                    "NOW_PRICE": {
+                                        {{#start}}
+                                        "gte": "{{start}}"
+                                        {{#end}},{{/end}}
+                                        {{/start}}
+                                        {{#end}}
+                                        "lte": "{{end}}"
+                                        {{/end}}
+                                    }
+                                }
+                            }
+                            {{/now_price}}
+                            {{#is_onsale}}
+                            ,
+                            {
+                                "term": {
+                                    "IS_ONSALE": "{{ is_onsale }}"
+                                }
+                            }
+                            {{/is_onsale}}
+                            {{#card_paytimes}}
+                            ,
+                            {
+                                "range": {
+                                    "CARD_PAYTIMES": {
+                                        "gte" : "{{ card_paytimes }}"
+                                    }
+                                }
+                            }
+                            {{/card_paytimes}}
+                        ]
+                        {{/filter}}
+                    }
+                },
+                "functions": [
+                    {
+                        "gauss": {
+                            "START_TIME": {
+                                "origin": "now",
+                                "scale": "10d",
+                                "offset": "3d",
+                                "decay": 0.5
+                            }
+                        },
+                        "weight": 5
+                    }
+                ]
+            }
+        }
+        {{#aggs}}
+        ,
+        "aggs": {
+            "categories": {
+                "nested": {
+                    "path": "categories"
+                },
+                "aggs": {
+                    "mid": {
+                        "terms": {
+                            "field": "categories.mid"
+                        },
+                        "aggs": {
+                            "sid": {
+                                "terms": {
+                                    "field": "categories.sid"
+                                },
+                                "aggs": {
+                                    "cid1": {
+                                        "terms": {
+                                            "field": "categories.cid1"
+                                        },
+                                        "aggs": {
+                                            "cid2": {
+                                                "terms": {
+                                                    "field": "categories.cid2"
+                                                },
+                                                "aggs": {
+                                                    "cid3": {
+                                                        "terms": {
+                                                            "field": "categories.cid3"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        {{/aggs}}
+        {{#sort}}
+        ,
+        "sort": [
+            {{#by}}
+            {"{{by}}": "{{order}}{{^order}}desc{{/order}}"},
+            {{/by}}
+            {"_score": "desc"}
+        ]
+        {{#search_after}}
+        ,
+        "search_after": {{#toJson}}search_after{{/toJson}}
+        {{/search_after}}
+        {{/sort}}
+        {{#extra}}
+        ,
+        "{{name}}": {{#toJson}}value{{/toJson}}
+        {{/extra}}
+}

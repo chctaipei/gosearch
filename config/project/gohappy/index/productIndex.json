@@ -1,0 +1,173 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings":{
+    "product": {
+        "properties": {
+            "SID": {
+                "type": "integer"
+            },
+            "ISBN": {
+                "type": "keyword"
+            },
+            "BRAND": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "AUTHOR": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "DEVICE": {
+                "type": "keyword",
+                "index": "no"
+            },
+            "PROFIT": {
+                "type": "integer",
+                "index": "no"
+            },
+            "MALL_ID": {
+                "type": "integer",
+                "index": "no"
+            },
+            "END_TIME": {
+                "type": "date",
+                "index": "no",
+                "format": "yyyy-MM-dd"
+            },
+            "PUB_DATE": {
+                "type": "date",
+                "index": "no",
+                "format": "yyyy-MM-dd"
+            },
+            "SHELF_ID": {
+                "type": "integer",
+                "index": "no"
+            },
+            "keywords": {
+                "type": "keyword"
+            },
+            "DESC_BREF": {
+                "type": "text",
+                "index": "no"
+            },
+            "IS_ONSALE": {
+                "type": "keyword"
+            },
+            "NOW_PRICE": {
+                "type": "integer"
+            },
+            "PUBLISHER": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "SHIP_TYPE": {
+                "type": "keyword"
+            },
+            "NAME_LABEL": {
+                "type": "text",
+                "index": "no"
+            },
+            "PRODUCT_ID": {
+                "type": "integer"
+            },
+            "START_TIME": {
+                "type": "date",
+                "index": "no",
+                "format": "yyyy-MM-dd"
+            },
+            "categories": {
+                "type": "nested",
+                "properties": {
+                    "mid": {
+                        "type": "keyword",
+                        "eager_global_ordinals": true
+                    },
+                    "sid": {
+                        "type": "keyword",
+                        "eager_global_ordinals": true
+                    },
+                    "cid1": {
+                        "type": "keyword",
+                        "eager_global_ordinals": true
+                    },
+                    "cid2": {
+                        "type": "keyword",
+                        "eager_global_ordinals": true
+                    },
+                    "cid3": {
+                        "type": "keyword",
+                        "eager_global_ordinals": true
+                    }
+                }
+            },
+            "CATEGORY_ID": {
+                "type": "text"
+            },
+            "PROFIT_RATE": {
+                "type": "integer",
+                "index": "no"
+            },
+            "SMALL_IMAGE": {
+                "type": "text",
+                "index": "no"
+            },
+            "MARKET_PRICE": {
+                "type": "integer",
+                "index": "no"
+            },
+            "MEMBER_PRICE": {
+                "type": "integer",
+                "index": "no"
+            },
+            "ONSALE_PRICE": {
+                "type": "integer"
+            },
+            "PRODUCT_NAME": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "CARD_PAYTIMES": {
+                "type": "integer"
+            },
+            "PARTIAL_POINT": {
+                "type": "integer"
+            },
+            "PARTIAL_PRICE": {
+                "type": "integer"
+            },
+            "EXCHANGE_POINT": {
+                "type": "integer"
+            },
+            "ONSALE_END_DATE": {
+                "type": "date",
+                "index": "no",
+                "format": "yyyy-MM-dd"
+            },
+            "MAIN_CATEGORY_ID": {
+                "type": "integer"
+            },
+            "ONSALE_START_DATE": {
+                "type": "date",
+                "index": "no",
+                "format": "yyyy-MM-dd"
+            },
+            "FULL_CATEGORY_PATH": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "ISPRD_CATEGORY_ONSALE_TYPE": {
+                "type": "keyword",
+                "index": "no"
+            }
+        }
+    }
+  }
+}

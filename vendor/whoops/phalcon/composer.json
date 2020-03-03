@@ -1,0 +1,19 @@
+{
+    "name": "whoops/phalcon",
+    "description": "Whoops provider for Phalcon",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tim Robertson",
+            "email": "Tim.Robertson@hkstrategies.ca"
+            }
+    ],
+    "require": {
+        "filp/whoops": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Whoops\\Provider\\Phalcon\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{{#unless hits.total}}
+<div class="box-header">
+  <span class="box-title">沒有符合的資料</span>
+</div>
+{{/unless}}
+{{#if hits.total}}
+<div class="box-header">
+  <span class="box-title">符合筆數：{{hits.total}}</span>  {{pagination}}
+</div>
+<table class="table table-hover">
+    <tbody>
+        {{#hits.hits}}
+        <tr>
+             <td class="col-md-11">
+               <div class="box-body">&nbsp; {{_source.words}}
+             </td>
+             <td class="col-md-1">
+                <a class="btn btn-xs btn-info" href="{{docLink _id}}">編輯</a>
+             </div>
+            </td>
+        </tr>
+        {{/hits.hits}}
+    </tbody>
+</table>
+{{pagination}}
+{{/if}}

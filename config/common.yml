@@ -1,0 +1,16 @@
+gosearch:
+  application:
+    appDir:        ../app/
+    controllerDir: ../app/Controller/
+    modelDir:      ../app/Model/
+    viewDir:       ../app/View/
+    cacheDir:      ../cache/
+    resourceDir:   ../resource/
+    encryptKey:    "k3y32GIgU$&ur%^45&^5^(%7"
+    logDir:        ../log/
+    projectConfigDir: project/
+  models:
+    metadata.adapter: "Memory"
+  log:
+    file: gosearch.log
+    format: "[%datetime%] %level_name%: %message% %context%\n"

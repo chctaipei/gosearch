@@ -1,0 +1,7 @@
+CREATE DATABASE  IF NOT EXISTS gosearch DEFAULT CHARSET=utf8;
+use gosearch;
+CREATE TABLE IF NOT EXISTS `project` (
+  `name` VARCHAR(64) NOT NULL,
+  `data` JSON,
+  PRIMARY KEY (`name`))
+ENGINE = InnoDB DEFAULT CHARSET=utf8;

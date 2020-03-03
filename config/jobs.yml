@@ -1,0 +1,74 @@
+resetCounter:
+    desc: "重設熱門關鍵字的計數器(每周)"
+    data:
+      task: Cron 
+      action: resetCounter
+      parameter:
+        project: ":PROJECT:"
+      hidden: [ project, type ]
+    cronstring: "0 4 * * 1"
+
+syncDic:
+    desc: "同步同音詞庫 (關鍵字存在超過 days=1 天, 取前 count=6000 筆)"
+    data:
+      task: Cron 
+      action: syncDic 
+      parameter:
+        project: ":PROJECT:"
+        days: 1
+        count: 6000
+      hidden: [ project, type ]
+      placeholder:
+        days: "建立時間必須大於天數 (預設: 1)"
+        count: "同步筆數 (預設: 6000)"
+    cronstring: "0 3 * * 1"
+
+syncMatches:
+    desc: "同步熱門關鍵字的顯示數量, 於資料匯入完成後執行"
+    data:
+      task: Cron 
+      action: syncMatches
+      parameter:
+        project: ":PROJECT:"
+        type: ""
+        script: ""
+        tag: ""
+        body: ""
+      hidden: [ project ]
+      optional: [ keyword, body ]
+      placeholder:
+        tag: "代表關鍵字的標籤名稱 (預設: query)"
+        body: "配合腳本送出的 JSON 內容 (預設為空)"
+    cronstring: "0 5 * * 2"
+
+syncBoost:
+    desc: "同步點擊排序"
+    data:
+      task: Cron 
+      action: syncBoost
+      parameter:
+        project: ":PROJECT:"
+        type: ""
+      hidden: [ project ]
+    cronstring: "0,30 * * * *"
+
+reduceCount:
+    desc: "點擊數減半"
+    data:
+      task: Cron 
+      action: reduceCount
+      parameter:
+        project: ":PROJECT:"
+      hidden: [ project ]
+    cronstring: "10 7 * * *"
+
+importData:
+    desc: "匯入資料到搜尋引擎 (索引 type)"
+    data:
+      task: Index
+      action: import
+      parameter:
+        project: ":PROJECT:"
+        type: ":TYPE:"
+      hidden: [ project, type ]
+    cronstring: "0 5 * * 0"

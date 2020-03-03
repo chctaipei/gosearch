@@ -1,0 +1,34 @@
+{
+    "settings": {
+        "number_of_shards": 1,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+      "hotquery": {
+        "properties": {
+            "name": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "matches": {
+                "type": "integer",
+                "index":"no"
+            },
+            "count": {
+                "type": "integer",
+                "index":"no"
+            },
+            "phonetic": {
+                "type": "text",
+                "index": "analyzed",
+                "analyzer": "cjk"
+            },
+            "updateTime":{
+                "type":"date",
+                "format":"yyyy-MM-dd HH:mm:ss"
+            }
+        }
+      }
+    }
+}

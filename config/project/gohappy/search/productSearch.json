@@ -1,0 +1,126 @@
+{
+    "title": "商品搜尋",
+    "type": "object",
+    "required": [
+        "query"
+    ],
+    "properties": {
+        "_source": {
+            "title": "輸出欄位",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "from": {
+            "title": "從第幾筆開始",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        },
+        "size": {
+            "title": "數量",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50,
+            "default": 10
+        },
+        "query": {
+            "type": "string",
+            "title": "關鍵字"
+        },
+        "filter": {
+            "title": "進階過濾",
+            "type": "object",
+            "properties": {
+                "ship_type": {
+                    "title": "宅配或超取",
+                    "type": "string",
+                    "anyOf": [
+                        {
+                            "type": "string",
+                            "enum": [
+                                "H"
+                            ],
+                            "title": "宅配"
+                        },
+                        {
+                            "type": "string",
+                            "enum": [
+                                "S"
+                            ],
+                            "title": "超取"
+                        }
+                    ]
+                },
+                "category_id": {
+                    "title": "分類",
+                    "type": "integer"
+                },
+                "now_price": {
+                    "title": "價格區間",
+                    "type": "object",
+                    "properties": {
+                        "start": {
+                            "title": "最低",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "end": {
+                            "title": "最高",
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "is_onsale": {
+                    "title": "促銷商品",
+                    "type": "string",
+                    "enum": [
+                        "Y",
+                        "N",
+                        null
+                    ]
+                },
+                "card_paytimes": {
+                    "title": "可分期商品",
+                    "type": "string",
+                    "enum": [
+                        1,
+                        null
+                    ]
+                }
+            }
+        },
+        "aggs": {
+            "title": "分類聚合",
+            "type": "boolean",
+            "default": false
+        },
+        "sort": {
+            "title": "排序",
+            "type": "object",
+            "properties": {
+                "by": {
+                    "title": "依照",
+                    "type": "string",
+                    "enum": [
+                        "NOW_PRICE",
+                        "START_TIME",
+                        "_score"
+                    ],
+                    "default": "_score"
+                },
+                "order": {
+                    "title": "順序",
+                    "type": "string",
+                    "enum": [
+                        "DESC",
+                        "ASC"
+                    ],
+                    "default": "DESC"
+                }
+            }
+        }
+    }
+}

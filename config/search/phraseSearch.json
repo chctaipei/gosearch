@@ -1,0 +1,23 @@
+{
+    "title": "同義詞搜尋",
+    "type": "object",
+    "properties": {
+        "from": {
+            "title": "從第幾筆開始(最小是0)",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        },
+        "size": {
+            "title": "數量",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50,
+            "default": 10
+        },
+        "query": {
+            "type": "string",
+            "title": "關鍵字"
+        }
+    }
+}

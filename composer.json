@@ -1,0 +1,39 @@
+{
+    "name": "gosearch/gosearch",
+    "description": "A management tool for search engine",
+    "license": "NO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "YSDT",
+            "email": "ysdt@friday.tw"
+        }
+    ],
+    "config": {
+            "gitlab-domains": [
+            "gitlab.hq.hiiir"
+        ],
+        "gitlab-token": {
+             "gitlab.hq.hiiir": "V2NUV1boRNfwjQKFtcRY"
+        },
+        "preferred-install": "dist",
+        "secure-http": false
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "elasticsearch/elasticsearch": "^5.3",
+        "whoops/phalcon": "dev-master",
+        "react/event-loop": "^0.5.2",
+        "monolog/monolog": "^1.23",
+        "react/http": "dev-master"
+    },
+    "require-dev": {
+        "phalcon/devtools": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "GoSearch\\": "src",
+            "GoSearch\\Task\\": "app/tasks"
+        }
+    }
+}

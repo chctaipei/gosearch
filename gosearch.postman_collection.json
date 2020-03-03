@@ -1,0 +1,150 @@
+{
+    "variables": [],
+    "info": {
+        "name": "gosearch",
+        "_postman_id": "8eaed69b-cd8d-c6a4-1902-f0c2e45697fa",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "熱門關鍵字",
+            "request": {
+                "url": "http://{{host}}/api/search/{{project}}/_hotwords",
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {},
+                "description": "列出前10最熱門關鍵字"
+            },
+            "response": []
+        },
+        {
+            "name": "建議關鍵字 (autocomplete)",
+            "request": {
+                "url": "http://{{host}}/api/search/{{project}}/_suggest",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"keyword\": \"{{auto_keyword}}\"\n}"
+                },
+                "description": "根據輸入的前綴字，提供完整的關鍵字建議"
+            },
+            "response": []
+        },
+        {
+            "name": "模糊搜尋",
+            "request": {
+                "url": {
+                    "raw": "http://{{host}}/api/search/{{project}}/_fuzzy",
+                    "protocol": "http",
+                    "host": [
+                        "{{host}}"
+                    ],
+                    "path": [
+                        "api",
+                        "search",
+                        "{{project}}",
+                        "_fuzzy"
+                    ],
+                    "query": [
+                        {
+                            "key": "",
+                            "value": "",
+                            "equals": false,
+                            "description": "",
+                            "disabled": true
+                        }
+                    ],
+                    "variable": []
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"keyword\": \"{{fuzzy_keyword}}\"\n}"
+                },
+                "description": "同音及模糊比對出最接近的關鍵字"
+            },
+            "response": []
+        },
+        {
+            "name": "套用樣板搜尋",
+            "request": {
+                "url": "http://{{host}}/api/search/{{project}}/{{type}}/_search/{{script}}",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{{template_search}}"
+                },
+                "description": "依之前定義的樣板作套版搜尋"
+            },
+            "response": []
+        },
+        {
+            "name": "一般搜尋",
+            "request": {
+                "url": "http://{{host}}/api/search/{{project}}/{{type}}/_search",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{{general_search}}"
+                },
+                "description": "非套用樣板搜尋"
+            },
+            "response": []
+        },
+        {
+            "name": "紀錄關鍵字",
+            "request": {
+                "url": "http://{{host}}/api/search/{{project}}/_log",
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json",
+                        "description": ""
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"keyword\": \"{{log_keyword}}\",\r\n    \"matches\": {{log_matches}}\r\n}"
+                },
+                "description": "熱門搜尋統計"
+            },
+            "response": []
+        }
+    ]
+}

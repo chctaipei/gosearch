@@ -1,0 +1,9 @@
+{
+    "ui:order": [
+        "query",
+        "*",
+        "from",
+        "size",
+        "_source"
+    ]
+}

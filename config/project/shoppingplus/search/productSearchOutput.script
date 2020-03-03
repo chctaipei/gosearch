@@ -1,0 +1,36 @@
+{{#unless hits.total}}
+<div class="box-header">
+  <span class="box-title">沒有符合的資料</span>
+</div>
+{{/unless}}
+{{#if hits.total}}
+<div class="box-header">
+  <span class="box-title">符合筆數：{{hits.total}}</span>  {{pagination}}
+</div>
+<table class="table table-hover">
+    <!-- thead>
+        <th>--</th>
+        <th>--</th>
+        <th>價格</th>
+    </thead -->
+    <tbody>
+        {{#hits.hits}}
+        <tr>
+            <td class="col-md-1">
+              <img width="100" src="https://shoppingplus-static.friday.tw/product/{{_source.productNo}}/default_240X240.png" style="float: left">            </td><td class="col-md-8">
+              <div class="box-body">&nbsp;
+                <div class="text-success">{{_source.marketSlogan}}</div>
+                <a href="https://m.shoppingplus.friday.tw/prod/{{_source.productNo}}">{{_source.name}}</a>
+                <a class="btn btn-xs btn-info" href="{{docLink _id}}">編輯</a>
+                <pre style="border: 0; background-color:transparent; word-wrap: break-word; white-space: pre-wrap;"></pre>
+             </div>
+            </td>
+            <td class="col-md-3 small">
+              售價: <span class="text-primary"><h4>${{_source.salePrice}}</h4></span><br>
+            </td>
+        </tr>
+        {{/hits.hits}}
+    </tbody>
+</table>
+{{pagination}}
+{{/if}}

@@ -1,0 +1,36 @@
+{
+  "backup": {
+    "dd": {
+      "1": null,
+      "2": null,
+      "count": "1"
+    },
+    "dddd": {
+      "1": 1532206807,
+      "2": 1532811605,
+      "3": null,
+      "count": "2"
+    }
+  },
+  "import": {
+    "dddd": "oracle_test",
+    "product": "oracle",
+    "product2": "oracle"
+  },
+  "source": {
+    "oracle": {
+      "dsn": "oci:dbname=(DESCRIPTION =\n    (ADDRESS =\n        (PROTOCOL = TCP)\n        (HOST=10.97.11.163)\n        (PORT=1521)\n    )\n    (CONNECT_DATA =\n        (SERVER=DEDICATED)\n        (SERVICE_NAME=isorcl)\n    )\n);charset=UTF8",
+      "sql": "SELECT\n  PRODUCT_ID as \"docid\",\n  TO_CHAR(START_TIME, 'YYYY-MM-DD') as START_TIME,\n  TO_CHAR(END_TIME, 'YYYY-MM-DD') as END_TIME,\n  TO_CHAR(ONSALE_START_DATE, 'YYYY-MM-DD') as ONSALE_START_DATE,\n  TO_CHAR(ONSALE_END_DATE, 'YYYY-MM-DD') as ONSALE_END_DATE,\n  TO_CHAR(PUB_DATE, 'YYYY-MM-DD') as PUB_DATE,\n  REPLACE(\n   REPLACE('[' || REGEXP_REPLACE(CATEGORY_ID, 'M([[:digit:]]*)>S([[:digit:]]*):>([[:digit:]]*)>([[:digit:]]*)>?([[:digit:]]*)', '{\"mid\":\\1,\"sid\":\\2,\"cid1\":\\3,\"cid2\":\\4,\"cid3\":\\5}') || ']', ';', ','),\n   '\"cid3\":}', '\"cid3\":null}') as \"categories\",\n  MALL_ID,\n  SID,\n  STORE_ID,\n  CATEGORY_ID,\n  PRODUCT_ID,\n  SHELF_ID,\n  FULL_CATEGORY_PATH,\n  NAME_LABEL,\n  PRODUCT_NAME,\n  DESC_BRIEF,\n  BRAND,\n  MARKET_PRICE,\n  MEMBER_PRICE,\n  ONSALE_PRICE,\n  EXCHANGE_POINT,\n  PARTIAL_PRICE,\n  PARTIAL_POINT,\n  SEARCH_KEYWORD,\n  SMALL_IMAGE,\n  IS_ONSALE,\n  AUTHOR,\n  PUBLISHER,\n  ISBN,\n  MAIN_CATEGORY_ID,\n  DEVICE,\n  ISPRD_CATEGORY_ONSALE_TYPE,\n  CARD_PAYTIMES,\n  SHIP_TYPE,\n  PRODUCT_COMMENT,\n  PROFIT,\n  PROFIT_RATE,\n  NOW_PRICE\nFROM SEARCH_PRODUCT_2017",
+      "filter": "GoHappyImport",
+      "password": "F11cSearch",
+      "username": "websearch"
+    },
+    "oracle_test": {
+      "dsn": "oci:dbname=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP) (HOST=10.97.11.163) (PORT=1521) ) (CONNECT_DATA = (SERVER=DEDICATED) (SERVICE_NAME=isorcl) ) );charset=UTF8",
+      "sql": "SELECT\n  PRODUCT_ID as \"docid\",\n  TO_CHAR(START_TIME, 'YYYY-MM-DD') as START_TIME,\n  TO_CHAR(END_TIME, 'YYYY-MM-DD') as END_TIME,\n  TO_CHAR(ONSALE_START_DATE, 'YYYY-MM-DD') as ONSALE_START_DATE,\n  TO_CHAR(ONSALE_END_DATE, 'YYYY-MM-DD') as ONSALE_END_DATE,\n  TO_CHAR(PUB_DATE, 'YYYY-MM-DD') as PUB_DATE,\n  REPLACE(\n   REPLACE('[' || REGEXP_REPLACE(CATEGORY_ID, 'M([[:digit:]]*)>S([[:digit:]]*):>([[:digit:]]*)>([[:digit:]]*)>?([[:digit:]]*)', '{\"mid\":\\1,\"sid\":\\2,\"cid1\":\\3,\"cid2\":\\4,\"cid3\":\\5}') || ']', ';', ','),\n   '\"cid3\":}', '\"cid3\":null}') as \"categories\",\n  MALL_ID,\n  SID,\n  STORE_ID,\n  CATEGORY_ID,\n  PRODUCT_ID,\n  SHELF_ID,\n  FULL_CATEGORY_PATH,\n  NAME_LABEL,\n  PRODUCT_NAME,\n  DESC_BRIEF,\n  BRAND,\n  MARKET_PRICE,\n  MEMBER_PRICE,\n  ONSALE_PRICE,\n  EXCHANGE_POINT,\n  PARTIAL_PRICE,\n  PARTIAL_POINT,\n  SEARCH_KEYWORD,\n  SMALL_IMAGE,\n  IS_ONSALE,\n  AUTHOR,\n  PUBLISHER,\n  ISBN,\n  MAIN_CATEGORY_ID,\n  DEVICE,\n  ISPRD_CATEGORY_ONSALE_TYPE,\n  CARD_PAYTIMES,\n  SHIP_TYPE,\n  PRODUCT_COMMENT,\n  PROFIT,\n  PROFIT_RATE,\n  NOW_PRICE\nFROM SEARCH_PRODUCT_2017\nWHERE ROWNUM < 11",
+      "filter": "GoHappyImport",
+      "password": "F11cSearch",
+      "username": "websearch"
+    }
+  }
+}

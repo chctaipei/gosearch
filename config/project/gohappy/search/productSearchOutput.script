@@ -1,0 +1,40 @@
+{{#unless hits.total}}
+<div class="box-header">
+  <span class="box-title">沒有符合的資料</span>
+</div>
+{{/unless}}
+{{#if hits.total}}
+<div class="box-header">
+  <span class="box-title">符合筆數：{{hits.total}}</span>  {{pagination}}
+</div>
+<table class="table table-hover">
+    <!-- thead>
+        <th>--</th>
+        <th>--</th>
+        <th>價格</th>
+    </thead -->
+    <tbody>
+        {{#hits.hits}}
+        <tr>
+            <td class='row'>
+            <div class="col-md-2 col-sm-4">
+              <img width="100" src="{{gohappyimg _source.SMALL_IMAGE}}" style="float: left">
+            </div><div class='col-md-7 col-sm-8'>              
+                <a href="http://shopping.friday.tw/ec2/product?mid={{_source.MALL_ID}}&sid={{_source.SID}}&cid={{_source.MAIN_CATEGORY_ID}}&pid={{_source.PRODUCT_ID}}" target="_product">{{_source.PRODUCT_NAME}}</a>
+                <a class="btn btn-xs btn-info" href="{{docLink _id}}">編輯</a>
+                <pre style="border: 0; background-color:transparent; word-wrap: break-word; white-space: pre-wrap; overflow-x: hidden;">{{cleanText _source.DESC_BRIEF}}</pre>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-4 small">
+              特惠價: <span class="text-primary"><h4>${{_source.NOW_PRICE}}</h4></span>
+            </div>
+            <div class="col-md-3 col-sm-8 col-xs-8 small">
+              點數+現金: <span class="text-primary">${{_source.PARTIAL_POINT}}</span> 點 +
+                        <span class="text-primary">${{_source.PARTIAL_PRICE}}</span> 元<br>
+              點數兌換: <span class="text-primary">${{_source.EXCHANGE_POINT}}</span> 點<br>
+            </div></td>
+        </tr>
+        {{/hits.hits}}
+    </tbody>
+</table>
+{{pagination}}
+{{/if}}
