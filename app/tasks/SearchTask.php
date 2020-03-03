@@ -13,7 +13,7 @@ use GoSearch\SearchHelper;
  *
  * @subject("搜尋")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class SearchTask extends MainTask
 {

@@ -6,7 +6,7 @@ use PDO;
 /**
  * Load Data from Database
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class Importer
 {

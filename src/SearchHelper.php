@@ -11,7 +11,7 @@ use GoSearch\Rule\NullRule;
  * 2. 從 db 撈取
  * 3. 載入 local file
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class SearchHelper
 {

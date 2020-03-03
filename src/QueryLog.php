@@ -9,7 +9,7 @@ use GoSearch\Admin;
 /**
  * 利用 query log 產生熱門關鍵字,同音詞庫
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 
 /**

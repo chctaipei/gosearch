@@ -10,12 +10,6 @@
         }
     ],
     "config": {
-            "gitlab-domains": [
-            "gitlab.hq.hiiir"
-        ],
-        "gitlab-token": {
-             "gitlab.hq.hiiir": "V2NUV1boRNfwjQKFtcRY"
-        },
         "preferred-install": "dist",
         "secure-http": false
     },

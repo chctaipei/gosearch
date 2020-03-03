@@ -13,7 +13,7 @@ use GoSearch\Badword;
  *
  * @subject("其他")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class ToolTask extends MainTask
 {

@@ -12,7 +12,7 @@ use GoSearch\Importer;
  *
  * @subject("索引")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class IndexTask extends MainTask
 {

@@ -22,7 +22,7 @@ use GoSearch\Boost;
  *
  * @subject("Cronjob")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class CronTask extends MainTask
 {

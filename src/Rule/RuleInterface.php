@@ -4,7 +4,7 @@ namespace GoSearch\Rule;
 /**
  * ProductRule
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 interface RuleInterface
 {

@@ -6,7 +6,7 @@ use GoSearch\QueryLog;
 /**
  * 不良關鍵字
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class Badword extends DBFactory
 {

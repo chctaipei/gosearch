@@ -25,7 +25,6 @@ try {
 } catch (\Phalcon\Cli\Dispatcher\Exception $ex) {
     echo "指令不存在, 請再確認...\n";
 } catch (\Exception $ex) {
-    // \Hiiir\ErrorHandler::exceptionHandler(null, $ex);
     throw $ex;
 }
 

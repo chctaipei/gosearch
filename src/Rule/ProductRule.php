@@ -5,7 +5,7 @@ namespace GoSearch\Rule;
 /**
  * Product filter/sort rule for search
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class ProductRule implements RuleInterface
 {

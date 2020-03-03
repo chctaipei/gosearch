@@ -12,7 +12,7 @@ use GoSearch\Cronjob;
 /**
  * 搜尋引擎設定
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class Admin extends Index
 {

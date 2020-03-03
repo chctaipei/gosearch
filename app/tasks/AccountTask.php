@@ -9,7 +9,7 @@ use GoSearch\User;
  *
  * @subject("帳號建立及設定")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class AccountTask extends MainTask
 {

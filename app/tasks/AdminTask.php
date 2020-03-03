@@ -11,7 +11,7 @@ use GoSearch\Plugin\Handler;
  *
  * @subject("專案建立及設定")
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class AdminTask extends MainTask
 {

@@ -7,7 +7,7 @@ use GoSearch\SearchHelper;
 /**
  * 同義詞庫維護及處理
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class Phrase
 {

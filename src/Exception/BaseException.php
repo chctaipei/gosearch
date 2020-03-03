@@ -37,10 +37,6 @@ abstract class BaseException extends Exception
             $this->configPath = self::$initPath;
         }
 
-        if (defined('HIIIR_EXCEPTION_PATH')) {
-            $this->configPath = HIIIR_EXCEPTION_PATH;
-        }
-
         $class = get_class($this);
 
         $tmp = substr(strrchr($class, "\\"), 1);

@@ -8,7 +8,7 @@ use Phalcon\Http\Response;
  *
  * @see https://docs.phalconphp.com/hr/3.3/application-cli
  *
- * @author("hc_chien <hc_chien@hiiir.com>")
+ * @author("hc_chien <hc_chien>")
  */
 class MainTask extends \Phalcon\CLI\Task
 {

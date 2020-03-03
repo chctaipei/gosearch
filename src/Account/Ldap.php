@@ -4,7 +4,7 @@ namespace GoSearch\Account;
 /**
  * LDAP
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  *
  * @SuppressWarnings(PHPMD.ShortVariable)
  */

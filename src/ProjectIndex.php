@@ -10,7 +10,7 @@ use GoSearch\Importer;
 /**
  * 專案索引
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class ProjectIndex extends Index
 {

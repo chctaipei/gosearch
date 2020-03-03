@@ -9,7 +9,7 @@ use GoSearch\ProjectSearch;
 /**
  * 熱門與同音詞庫
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  */
 class HotQuery extends SearchBase
 {

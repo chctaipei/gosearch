@@ -9,7 +9,7 @@ use GoSearch\Exception\SearchException;
 /**
  * ElasticSearch Provider
  *
- * @author hc_chien <hc_chien@hiiir.com>
+ * @author hc_chien <hc_chien>
  *
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
