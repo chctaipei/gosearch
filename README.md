@@ -1,4 +1,4 @@
-# friday 搜尋引擎使用說明
+# 搜尋引擎使用說明
 
 ## 專案建立
 1.  一個專案會配一個 HotQuery 做 hotquery, 同音, autocomplete, 同義詞, 如果不夠則要另開新專案
